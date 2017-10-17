@@ -1,0 +1,67 @@
+<html>
+
+<head>
+  <title>Sovr</title>
+  <script src="sovr.js"></script>
+</head>
+
+<body>
+  <div>
+    <span>Onda 1:</span>
+    <br>
+    <span>Frequenza:</span>
+    <input type="number" id="frequency1" value="440" onchange="update_values()" onmouseup="update_values()">
+    <br>
+    <button type="button" onclick="play_wave(lamba1)">Ascolta suono</button>
+  </div>
+
+  <br>
+
+  <div>
+    <span>Onda 2:</span>
+    <br>
+    <span>Frequenza:</span>
+    <input type="number" id="frequency2" value="440" onchange="update_values()" onmouseup="update_values()">
+    <br>
+    <button type="button" onclick="play_wave(lamba2)">Ascolta suono</button>
+  </div>
+
+  <br>
+
+  <span id="fb"></span>
+  <br>
+  <span id="fa"></span>
+  <br>
+  <button type="button" onclick="play_sum_wave()">Ascolta suono</button>
+
+  <br>
+
+  <div style="position: absolute; top: 0; bottom: 0; left: 270; width: 400px;">
+    <br>
+    <span>Impostazioni Disegno:</span>
+    <br>
+    <span>Disegna onda media</span>
+    <input type="checkbox" checked="true" id="aver" onchange="update_settings()">
+    <br>
+    <span>Disegna onda differenza</span>
+    <input type="checkbox" checked="true" id="diff" onchange="update_settings()">
+    <br>
+    <span>Disegna onda interferenza</span>
+    <input type="checkbox" checked="true" id="inter" onchange="update_settings()">
+    <br>
+    <span>Scala x:</span>
+    <input type="number" id="zoomx" value="30" min="1" onchange="update_settings()">
+    <br>
+    <span>Scala y:</span>
+    <input type="number" id="zoomy" value="30" min="1" onchange="update_settings()">
+    <br>
+    <span>Qualita visiva:</span>
+    <input type="number" id="q" value="5" min="1" onchange="update_settings()">
+  </div>
+  <hr>
+  <canvas width="1080" height="450" id="graph_canvas">
+  </canvas>
+  <hr>
+</body>
+
+</html>
