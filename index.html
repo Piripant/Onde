@@ -7,23 +7,23 @@
 
 <body>
   <div>
-    <span>Onda 1:</span>
+    <span style="color:red">Onda 1:</span>
     <br>
     <span>Frequenza:</span>
     <input type="number" id="frequency1" value="440" onchange="update_values()" onmouseup="update_values()">
     <br>
-    <button type="button" onclick="play_wave(lamba1)">Ascolta suono</button>
+    <button type="button" onclick="play_wave(lambda1)">Ascolta suono</button>
   </div>
 
   <br>
 
   <div>
-    <span>Onda 2:</span>
+    <span style="color:green">Onda 2:</span>
     <br>
     <span>Frequenza:</span>
     <input type="number" id="frequency2" value="440" onchange="update_values()" onmouseup="update_values()">
     <br>
-    <button type="button" onclick="play_wave(lamba2)">Ascolta suono</button>
+    <button type="button" onclick="play_wave(lambda2)">Ascolta suono</button>
   </div>
 
   <br>
@@ -43,20 +43,18 @@
     <span>Disegna onda media</span>
     <input type="checkbox" checked="true" id="aver" onchange="update_settings()">
     <br>
-    <span>Disegna onda differenza</span>
+    <span style="color:purple">Disegna onda battiti</span>
     <input type="checkbox" checked="true" id="diff" onchange="update_settings()">
     <br>
-    <span>Disegna onda interferenza</span>
+    <span style="color:blue">Disegna onda interferenza</span>
     <input type="checkbox" checked="true" id="inter" onchange="update_settings()">
     <br>
-    <span>Scala x:</span>
-    <input type="number" id="zoomx" value="30" min="1" onchange="update_settings()">
+    <span>Scala (x, y):</span>
+    <input type="number" id="zoomx" value="30" min="1" style="width: 4em" onchange="update_settings()">
+    <input type="number" id="zoomy" value="30" min="1" style="width: 4em" onchange="update_settings()">
     <br>
-    <span>Scala y:</span>
-    <input type="number" id="zoomy" value="30" min="1" onchange="update_settings()">
-    <br>
-    <span>Qualita visiva:</span>
-    <input type="number" id="q" value="5" min="1" onchange="update_settings()">
+    <span>Punti/Pixel:</span>
+    <input type="number" id="q" value="5" min="1" style="width: 4em" onchange="update_settings()">
   </div>
   <hr>
   <canvas width="1080" height="450" id="graph_canvas">

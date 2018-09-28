@@ -8,7 +8,6 @@ lambda1 = 0;
 lambda2 = 0;
 
 ctx = null;
-fctx = null;
 audio_ctx = null;
 
 off_x = 0;
@@ -23,7 +22,6 @@ resize = function () {
 
 window.onload = function () {
     ctx = document.getElementById("graph_canvas").getContext("2d");
-    fctx = document.getElementById("f_canvas").getContext("2d");
 
     resize();
 
@@ -38,31 +36,39 @@ window.onresize = function () { resize() };
 
 window.onkeydown = function (e) {
     changed = false;
-    switch (e.keyCode) {
-        case 37:
-            off_x -= zoom_x;
-            changed = true;
-            break;
-        case 39:
-            off_x += zoom_x;
-            changed = true;
-            break;
-        case 38:
-            zoom_x++;
-            changed = true;
-            break;
-        case 40:
-            zoom_x--;
-            changed = true;
-            break;
-        case 65:
-            zoom_y++;
-            changed = true;
-            break;
-        case 90:
-            zoom_y--;
-            changed = true;
-            break;
+
+    console.log(document.activeElement.tagName);
+    if (ctx.canvas.hasFocus()) {
+        switch (e.keyCode) {
+            case 37:
+                off_x -= zoom_x;
+                changed = true;
+                break;
+            case 39:
+                off_x += zoom_x;
+                changed = true;
+                break;
+            case 38:
+                zoom_x++;
+                changed = true;
+                break;
+            case 40:
+                if (zoom_x > 1) {
+                    zoom_x--;
+                    changed = true;
+                }
+                break;
+            case 65:
+                zoom_y++;
+                changed = true;
+                break;
+            case 90:
+                if (zoom_y > 1) {
+                    zoom_y--;
+                    changed = true;
+                }
+                break;
+        }
     }
 
     if (changed) {
@@ -156,35 +162,6 @@ draw_graph = function () {
     if (draw_interference) {
         draw_sum("#0000FF", lambda1, lambda2, zoom_y * 3);
     }
-
-    fctx.clearRect(0, 0, fctx.canvas.width, fctx.canvas.height);
-    draw_fa();
-}
-
-draw_fa = function () {
-    // Display from 0 to 880 Hz on the canvas
-    var scale = fctx.canvas.width / 880;
-    var y = fctx.canvas.height;
-
-    fctx.fillStyle = "#FF0000";
-    fctx.strokeStyle = "#FF0000";
-    fctx.beginPath();
-
-    fctx.moveTo(lambda1 * scale, 0);
-    fctx.lineTo(lambda1 * scale, y);
-    fctx.fillText(lambda1, lambda1 * scale, 2 * y / 3);
-
-    fctx.stroke();
-
-    fctx.fillStyle = "#00FF00";
-    fctx.strokeStyle = "#00FF00";
-    fctx.beginPath();
-
-    fctx.moveTo(lambda2 * scale, 0);
-    fctx.lineTo(lambda2 * scale, y);
-    fctx.fillText(lambda2, lambda2 * scale, y / 3);
-
-    fctx.stroke();
 }
 
 play_wave = function (lambda) {
